@@ -8,16 +8,21 @@ import org.springframework.stereotype.Service;
 import com.gestion.model.Pays;
 import com.gestion.repository.PaysRepository;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Service
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PaysServiceImpl implements PaysService {
 
 	@Autowired
 	PaysRepository paysrepository;
+	
+	
 	@Override
 	public Pays Ajouter(Pays pays) {
 		// TODO Auto-generated method stub
@@ -36,7 +41,7 @@ public class PaysServiceImpl implements PaysService {
 		
 		return paysrepository.findById(id).map(
                 p->{
-                  
+                  p.setNom(pays.getNom());
                     return paysrepository.save(p);
 
                 }

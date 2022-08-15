@@ -24,6 +24,7 @@ public class Pays {
     @Column(name = "nom")
     private String nom;
 
+    public Pays() {}
 	public Pays(Long id, String nom) {
 		super();
 		this.id = id;

@@ -39,7 +39,9 @@ public class Regions {
 //	@ManyToOne
 //	@JoinColumn(name = "population_population_id ")
 //	private Population population;
-	
+    
+    public Regions() {
+	}
 	public Regions(Long id, String codeRegion, String nom, String domaine_activite, int superficie,
 			String langue_majoritaire, Pays pays) {
 		super();
@@ -51,6 +53,7 @@ public class Regions {
 		this.langue_majoritaire = langue_majoritaire;
 	
 	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -92,6 +95,7 @@ public class Regions {
 	}
 	public void setPays(Pays pays) {
 		this.pays = pays;
+		
 	}
 //	public Population getPopulation() {
 //		return population;

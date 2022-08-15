@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.gestion.model.Population;
 import com.gestion.repository.PopulationRepository;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class PopulationServiceImpl implements PopulationService {
@@ -31,19 +35,27 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public String Supprimer(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		this.populationrepository.deleteById(id);
+		return "Population supprimer avec succès";
 	}
 
 	@Override
 	public Population Modifier(Population population, Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return populationrepository.findById(id).map(
+                p->{
+                  p.setAnnee(population.getAnnee());
+                  p.setNb_population(population.getNb_population());
+                    return populationrepository.save(p);
+
+                }
+        ).orElseThrow(()-> new RuntimeException("Population non trouvé"));
 	}
 
 	@Override
 	public List<Population> lister() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.populationrepository.findAll();
 	}
 
 }

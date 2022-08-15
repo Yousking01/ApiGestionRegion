@@ -35,8 +35,8 @@ public class RegionController {
     }
     
     @ApiOperation(value = "Cette requette permet de suprimer des regions")
-    @DeleteMapping("/Supprimer_region")
-    public String Supprimer(Long id) {
+    @DeleteMapping("/Supprimer_region/{id}")
+    public String Supprimer(@PathVariable long id) {
          regionservice.Supprimer(id);
          return "Region supprimée avec succes";
     }
@@ -49,7 +49,7 @@ public class RegionController {
     
     @ApiOperation(value = "Cette requette permet de modifier les regions")
     @PutMapping("/modifier_region/{id}")
-    public Regions Modifier(@RequestBody Regions region,@PathVariable Long id) {
+    public Regions Modifier(@RequestBody Regions region,@PathVariable long id) {
         System.out.println("Modifier avec succès");
         return regionservice.Modifier(region, id);
     }

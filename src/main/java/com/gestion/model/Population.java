@@ -36,7 +36,8 @@ public class Population {
 	@ManyToOne
 	private Regions region;
 	
-	public Population(Long id, Long nb_population, Long annee) {
+	public Population() {}
+	public Population(long id, long nb_population, long annee) {
 		super();
 		this.id = id;
 		this.nb_population = nb_population;

@@ -34,8 +34,8 @@ public class PopulationController {
 	}
 	
 	@ApiOperation(value = "Cette requette permet de suprimer des populations")
-	@DeleteMapping("/Supprimer_population")
-	public String Supprimer(Long id) {
+	@DeleteMapping("/Supprimer_population/{id}")
+	public String Supprimer(@PathVariable long id) {
 		 	populationservice.Supprimer(id);
 		 return "Supprimer avec succes";
 	}
@@ -48,7 +48,7 @@ public class PopulationController {
 	
 	@ApiOperation(value = "Cette requette permet de modifier des populations")
 	@PutMapping("/modifier_population/{id}")
-	public Population Modifier(@RequestBody Population population,@PathVariable Long id) {
+	public Population Modifier(@RequestBody Population population,@PathVariable long id) {
 		System.out.println("Modifier avec succès");
 		return populationservice.Modifier(population, id);
 	}

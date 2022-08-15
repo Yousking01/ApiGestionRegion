@@ -31,8 +31,8 @@ public class PaysController {
 		return paysservice.Ajouter(pays);
 	}
 	@ApiOperation(value = "Cette requette permet de supprimer des pays")
-	@DeleteMapping("/Supprimer_pays")
-	public String Supprimer(Long id) {
+	@DeleteMapping("/Supprimer_pays/{id}")
+	public String Supprimer(@PathVariable long id) {
 		 	paysservice.Supprimer(id);
 		 return "Supprimer avec succes";
 	}
@@ -43,7 +43,7 @@ public class PaysController {
 	}
 	@ApiOperation(value = "Cette requette permet de modifier des pays")
 	@PutMapping("/modifier_pays/{id}")
-	public Pays Modifier(@RequestBody Pays pays,@PathVariable Long id) {
+	public Pays Modifier(@RequestBody Pays pays,@PathVariable long id) {
 		System.out.println("Modifier avec succès");
 		return paysservice.Modifier(pays, id);
 	}
