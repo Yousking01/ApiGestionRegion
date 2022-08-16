@@ -17,6 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Service
+//Implémentation des méthodes déclarées dans RegionService
 public class RegionServiceImpl implements RegionService {
 
     @Autowired
@@ -56,5 +57,8 @@ public class RegionServiceImpl implements RegionService {
         // TODO Auto-generated method stub
         return this.regionrepository.findAll();
     }
+
+
+
 
 }

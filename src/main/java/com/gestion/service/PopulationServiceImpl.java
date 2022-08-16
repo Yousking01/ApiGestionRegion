@@ -21,6 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+//Implémentation des méthodes déclarées dans PopulationService
 public class PopulationServiceImpl implements PopulationService {
 	 
 	@Autowired

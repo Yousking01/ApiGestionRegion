@@ -19,29 +19,41 @@ import com.gestion.model.Pays;
 import com.gestion.service.PaysService;
 
 
+//Annotation qui fait comprendre au programme que c'est un controller
 @RestController
+//Adresse à laquelle il faut accèder pour faire les différentes opérations
 @RequestMapping("/api/pays")
-@Api(value = "hello", description = "Cette API permettra de faire la gestion des régions de mon pays(Mali)")
+//Annotation pour Swagger
+@Api(value = "hello", description = "Cette API permet de faire la gestion des régions d'un pays (ici le Mali)")
 public class PaysController {
+	//Annotation pour l'injection de dépendance entre les beans du programmes
 	@Autowired
 	PaysService paysservice;
-	@ApiOperation(value = "Cette requette permet d'ajouter des pays")
+
+	//Méthode pour ajouter un pays
+	@ApiOperation(value = "Cette requête permet d'ajouter un pays")
 	@PostMapping("/ajouter_pays")
 	public Pays Ajouter(@RequestBody Pays pays) {
 		return paysservice.Ajouter(pays);
 	}
-	@ApiOperation(value = "Cette requette permet de supprimer des pays")
+
+	//Méthode pour supprimer un pays
+	@ApiOperation(value = "Cette requête permet de supprimer un pays")
 	@DeleteMapping("/Supprimer_pays/{id}")
 	public String Supprimer(@PathVariable long id) {
 		 	paysservice.Supprimer(id);
-		 return "Supprimer avec succes";
+		 return "Supprimé avec succes";
 	}
-	@ApiOperation(value = "Cette requette permet d'afficher la liste des pays")
+
+	//Méthode pour afficher la liste des pays
+	@ApiOperation(value = "Cette requête permet d'afficher la liste des pays")
 	@GetMapping("/liste_pays")
 	public List<Pays> lister() {
 		return paysservice.lister();
 	}
-	@ApiOperation(value = "Cette requette permet de modifier des pays")
+
+	//Méthode pour modifier un pays
+	@ApiOperation(value = "Cette requête permet de modifier un pays")
 	@PutMapping("/modifier_pays/{id}")
 	public Pays Modifier(@RequestBody Pays pays,@PathVariable long id) {
 		System.out.println("Modifier avec succès");

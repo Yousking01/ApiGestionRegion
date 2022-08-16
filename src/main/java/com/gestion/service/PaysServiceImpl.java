@@ -17,6 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+//Implémentation des méthodes déclarées dans PaysService
 public class PaysServiceImpl implements PaysService {
 
 	@Autowired

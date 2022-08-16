@@ -19,34 +19,43 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 
+//Annotation qui fait comprendre au programme que c'est un controller
 @RestController
+//Adresse à laquelle il faut accèder pour faire les différentes opérations
 @RequestMapping("/api/population")
-@Api(value = "hello", description = "Cette API permettra de faire la gestion des régions de mon pays(Mali)")
+//Annotation pour Swagger
+@Api(value = "hello", description = "Cette API permet de faire la gestion des régions d'un pays (ici le Mali)")
 public class PopulationController {
 
+	//Annotation pour l'injection de dépendance entre les beans du programmes
 	@Autowired
 	PopulationService populationservice;
-	
-	@ApiOperation(value = "Cette requette permet d'ajouter des populations")
+
+	//Méthode pour ajouter une population
+	@ApiOperation(value = "Cette requête permet d'ajouter une population")
 	@PostMapping("/ajouter_population")
 	public Population Ajouter(@RequestBody Population population ) {
 		return populationservice.Ajouter(population);
 	}
-	
-	@ApiOperation(value = "Cette requette permet de suprimer des populations")
+
+	//Méthode pour supprimer une population
+	@ApiOperation(value = "Cette requête permet de suprimer une population")
 	@DeleteMapping("/Supprimer_population/{id}")
 	public String Supprimer(@PathVariable long id) {
 		 	populationservice.Supprimer(id);
-		 return "Supprimer avec succes";
+		 return "Supprimé avec succes";
 	}
-	
-	@ApiOperation(value = "Cette requette permet d'afficher la liste des populations")
+
+	//Méthode pour afficher la liste des populations
+	@ApiOperation(value = "Cette requête permet d'afficher la liste des populations")
 	@GetMapping("/liste_population")
 	public List<Population> lister() {
 		return populationservice.lister();
 	}
-	
-	@ApiOperation(value = "Cette requette permet de modifier des populations")
+
+
+	//Méthode pour modifier une population
+	@ApiOperation(value = "Cette requête permet de modifier des populations")
 	@PutMapping("/modifier_population/{id}")
 	public Population Modifier(@RequestBody Population population,@PathVariable long id) {
 		System.out.println("Modifier avec succès");

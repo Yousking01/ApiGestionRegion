@@ -20,34 +20,42 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 
-
+//Annotation qui fait comprendre au programme que c'est un controller
 @RestController
+//Adresse à laquelle il faut accèder pour faire les différentes opérations
 @RequestMapping("/api/region")
-@Api(value = "hello", description = "Cette API permettra de faire la gestion des régions de mon pays(Mali)")
+//Annotation pour Swagger
+@Api(value = "hello", description = "Cette API permet de faire la gestion des régions d'un pays (ici le Mali)")
 public class RegionController {
+
+    //Annotation pour l'injection de dépendance entre les beans du programme
     @Autowired
     RegionService regionservice;
 
-    @ApiOperation(value = "Cette requette permet d'ajouter des regions")
+    //Méthode pour ajouter une région
+    @ApiOperation(value = "Cette requête permet d'ajouter une région")
     @PostMapping("/ajouter_region")
     public Regions Ajouter(@RequestBody Regions region) {
         return regionservice.Ajouter(region);
     }
-    
-    @ApiOperation(value = "Cette requette permet de suprimer des regions")
+
+    //Méthode pour supprimer une région
+    @ApiOperation(value = "Cette requête permet de supprimer une région")
     @DeleteMapping("/Supprimer_region/{id}")
     public String Supprimer(@PathVariable long id) {
          regionservice.Supprimer(id);
          return "Region supprimée avec succes";
     }
 
-    @ApiOperation(value = "Cette requette permet d'afficher la liste des regions")
+    //Méthode pour afficher la liste des régions
+    @ApiOperation(value = "Cette requête permet d'afficher la liste des regions")
     @GetMapping("/liste_region")
     public List<Regions> lister() {
         return regionservice.lister();
     }
-    
-    @ApiOperation(value = "Cette requette permet de modifier les regions")
+
+    //Méthode pour modifier une région
+    @ApiOperation(value = "Cette requête permet de modifier une région")
     @PutMapping("/modifier_region/{id}")
     public Regions Modifier(@RequestBody Regions region,@PathVariable long id) {
         System.out.println("Modifier avec succès");

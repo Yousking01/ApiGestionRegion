@@ -1,22 +1,17 @@
 package com.gestion.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-
-
-
+//Annotation qui fait comprendre au programme que c'est une entité de la BDD
 @Entity
+//Annotation pour nommer la table dans la BDDr
 @Table(name = "region")
 public class Regions {
 
+	//Clé primaire de cette table
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+	//Annotation pour spécifier le nom de la colonne dans la BDDr reliée
     @Column(name = "Region_id")
     private Long id;
     @Column(name = "codeRegion")
@@ -32,16 +27,20 @@ public class Regions {
     
     
     //@JsonIgnore
-    
+
+	//Importation des clés étrangères
     @ManyToOne
 	private Pays pays;
     
-//	@ManyToOne
-//	@JoinColumn(name = "population_population_id ")
-//	private Population population;
-    
+	@ManyToOne
+	@JoinColumn(name = "population_id ")
+	private Population population;
+
+	//Déclaration d'un constructeur vide
     public Regions() {
 	}
+
+	//Utilisation du constructeur
 	public Regions(Long id, String codeRegion, String nom, String domaine_activite, int superficie,
 			String langue_majoritaire, Pays pays) {
 		super();
@@ -53,7 +52,8 @@ public class Regions {
 		this.langue_majoritaire = langue_majoritaire;
 	
 	}
-	
+
+	//Paire de Getters/Setters
 	public Long getId() {
 		return id;
 	}
@@ -97,13 +97,13 @@ public class Regions {
 		this.pays = pays;
 		
 	}
-//	public Population getPopulation() {
-//		return population;
-//	}
-//	public void setPopulation(Population population) {
-//		this.population = population;
-//	}
-//	
+	public Population getPopulation() {
+		return population;
+	}
+	public void setPopulation(Population population) {
+		this.population = population;
+	}
+
 	
 	
 	
