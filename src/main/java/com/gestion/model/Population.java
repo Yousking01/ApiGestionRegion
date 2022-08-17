@@ -32,6 +32,19 @@ public class Population {
 	@ManyToOne
 	private Regions region;
 
+	public Regions getRegion() {
+		return region;
+	}
+
+	public void setRegion(Regions region) {
+		this.region = region;
+	}
+
+	public Population(Regions region) {
+		this.region = region;
+
+	}
+
 	//Déclaration d'un constructeur vide
 	public Population() {}
 

@@ -2,7 +2,9 @@ package com.gestion.controller;
 
 import java.util.List;
 
+import com.gestion.others.errorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +35,13 @@ public class PaysController {
 	//Méthode pour ajouter un pays
 	@ApiOperation(value = "Cette requête permet d'ajouter un pays")
 	@PostMapping("/ajouter_pays")
-	public Pays Ajouter(@RequestBody Pays pays) {
-		return paysservice.Ajouter(pays);
+	public Object Ajouter(@RequestBody Pays pays) {
+		try{
+			return paysservice.Ajouter(pays);
+		} catch(Exception e){
+			return errorMessage.ErrorResponse("Ce pays existe déjà !", HttpStatus.OK,null);
+		}
+
 	}
 
 	//Méthode pour supprimer un pays

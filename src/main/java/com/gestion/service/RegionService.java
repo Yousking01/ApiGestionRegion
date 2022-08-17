@@ -15,6 +15,7 @@ public interface RegionService {
     String Supprimer(Long id);
     Regions Modifier(Regions region, Long id);
     List<Regions> lister();
+    Iterable<Object[]> listeSansPays();
 
 
 

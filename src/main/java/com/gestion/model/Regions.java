@@ -14,9 +14,9 @@ public class Regions {
 	//Annotation pour spécifier le nom de la colonne dans la BDDr reliée
     @Column(name = "Region_id")
     private Long id;
-    @Column(name = "codeRegion")
+    @Column(name = "codeRegion", unique=true)
     private String codeRegion;
-    @Column(name = "nom")
+    @Column(name = "nom", length = 25,unique = true)
     private String nom;
     @Column
     private String domaine_activite;
@@ -24,17 +24,17 @@ public class Regions {
     private int superficie;
     @Column(name = "langue_majoritaire")
     private String langue_majoritaire;
-    
-    
+
+
     //@JsonIgnore
 
 	//Importation des clés étrangères
     @ManyToOne
 	private Pays pays;
-    
-	@ManyToOne
+
+	/*@ManyToOne
 	@JoinColumn(name = "population_id ")
-	private Population population;
+	private Population population;*/
 
 	//Déclaration d'un constructeur vide
     public Regions() {
@@ -50,7 +50,7 @@ public class Regions {
 		this.domaine_activite = domaine_activite;
 		this.superficie = superficie;
 		this.langue_majoritaire = langue_majoritaire;
-	
+
 	}
 
 	//Paire de Getters/Setters
@@ -95,14 +95,14 @@ public class Regions {
 	}
 	public void setPays(Pays pays) {
 		this.pays = pays;
-		
+
 	}
-	public Population getPopulation() {
+	/*public Population getPopulation() {
 		return population;
 	}
 	public void setPopulation(Population population) {
 		this.population = population;
-	}
+	} */
 
 	
 	

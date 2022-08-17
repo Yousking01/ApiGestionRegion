@@ -34,7 +34,7 @@ public class PopulationController {
 	//Méthode pour ajouter une population
 	@ApiOperation(value = "Cette requête permet d'ajouter une population")
 	@PostMapping("/ajouter_population")
-	public Population Ajouter(@RequestBody Population population ) {
+	public Population Ajouter(Population population ) {
 		return populationservice.Ajouter(population);
 	}
 
@@ -57,7 +57,7 @@ public class PopulationController {
 	//Méthode pour modifier une population
 	@ApiOperation(value = "Cette requête permet de modifier des populations")
 	@PutMapping("/modifier_population/{id}")
-	public Population Modifier(@RequestBody Population population,@PathVariable long id) {
+	public Population Modifier(Population population,@PathVariable long id) {
 		System.out.println("Modifier avec succès");
 		return populationservice.Modifier(population, id);
 	}

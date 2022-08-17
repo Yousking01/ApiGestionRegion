@@ -58,7 +58,10 @@ public class RegionServiceImpl implements RegionService {
         return this.regionrepository.findAll();
     }
 
-
+    @Override
+    public Iterable<Object[]> listeSansPays() {
+        return regionrepository.listeSansPays();
+    }
 
 
 }

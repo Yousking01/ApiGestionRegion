@@ -3,7 +3,9 @@ package com.gestion.controller;
 import java.util.List;
 
 
+import com.gestion.others.errorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +37,12 @@ public class RegionController {
     //Méthode pour ajouter une région
     @ApiOperation(value = "Cette requête permet d'ajouter une région")
     @PostMapping("/ajouter_region")
-    public Regions Ajouter(@RequestBody Regions region) {
-        return regionservice.Ajouter(region);
+    public Object Ajouter(Regions region) {
+        try {
+            return regionservice.Ajouter(region);
+        } catch (Exception e) {
+            return errorMessage.ErrorResponse("Cette région existe déjà !", HttpStatus.OK,null);
+        }
     }
 
     //Méthode pour supprimer une région
@@ -54,10 +60,17 @@ public class RegionController {
         return regionservice.lister();
     }
 
+    //Méthode pour afficher la liste des régions sans pays
+    @ApiOperation(value = "Cette requête permet d'afficher la liste des regions sans pays")
+    @GetMapping("/liste_region_sp")
+    public Iterable<Object[]> listeSansPays() {
+        return regionservice.listeSansPays();
+    }
+
     //Méthode pour modifier une région
     @ApiOperation(value = "Cette requête permet de modifier une région")
     @PutMapping("/modifier_region/{id}")
-    public Regions Modifier(@RequestBody Regions region,@PathVariable long id) {
+    public Regions Modifier(Regions region,@PathVariable long id) {
         System.out.println("Modifier avec succès");
         return regionservice.Modifier(region, id);
     }

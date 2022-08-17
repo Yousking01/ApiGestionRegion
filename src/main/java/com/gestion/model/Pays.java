@@ -23,7 +23,7 @@ public class Pays {
     @Column(name = "Pays_id")
     private Long id;
 
-    @Column(name = "nom")
+    @Column(name = "nom",length = 25,unique = true)
     private String nom;
 
 	//Déclaration d'un constructeur vide
